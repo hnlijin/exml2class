@@ -1,0 +1,19 @@
+/**
+ *
+ * @lijin 
+ *
+ */
+<% if (class) { %>
+class <%= class.name %> extends eui.Component {
+    public btnJoinRoom:eui.Button;
+    public btnCreateRoom:eui.Button;
+    public txtUserUid:eui.Label;
+    public txtUserName:eui.Label;
+    public txtUserCoins:eui.Label;
+    public btnBuyCoins: eui.Button;
+	public constructor() {
+    	super();
+    	this.skinName = "resource/ui/MainUISkin.exml";
+	}
+}
+< } % >
