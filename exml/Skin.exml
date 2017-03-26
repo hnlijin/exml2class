@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RoomSkin" width="960" height="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Group y="363" anchorOffsetX="0" width="180" anchorOffsetY="0" height="198" left="0">
+		<e:Image source="button_down_png" y="101" anchorOffsetX="0" anchorOffsetY="0" height="99" scale9Grid="2,3,11,10" alpha="0.5" left="0" right="0"/>
+		<e:Image source="border_png" anchorOffsetX="0" width="100" anchorOffsetY="0" height="100" left="0" top="0" alpha="0.5"/>
+		<e:Image id="imgPlayerA" width="100" height="100" anchorOffsetX="50" anchorOffsetY="50" left="0" top="0"/>
+		<e:Label id="txtPlayerUIDA" text="UID：562184" y="144.5" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerScoreA" text="Score: 1000" y="173" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerNameA" text="姓名" y="116" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+	</e:Group>
+	<e:Group y="108" anchorOffsetX="0" width="180" anchorOffsetY="0" height="198" left="0">
+		<e:Image source="button_down_png" y="101" anchorOffsetX="0" anchorOffsetY="0" height="99" scale9Grid="2,3,11,10" alpha="0.5" left="0" right="0"/>
+		<e:Image source="border_png" anchorOffsetX="0" width="100" anchorOffsetY="0" height="100" left="0" top="0" alpha="0.5"/>
+		<e:Image id="imgPlayerB" width="100" height="100" anchorOffsetX="50" anchorOffsetY="50" left="0" top="0"/>
+		<e:Label id="txtPlayerUIDB" text="UID：562184" y="144.5" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerScoreB" text="Score: 1000" y="173" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerNameB" text="姓名" y="116" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="left" size="20" horizontalCenter="0"/>
+	</e:Group>
+	<e:Group y="108" anchorOffsetX="0" width="180" anchorOffsetY="0" height="198" right="0">
+		<e:Image source="button_down_png" y="101" anchorOffsetX="0" anchorOffsetY="0" height="99" scale9Grid="2,3,11,10" alpha="0.5" left="0" right="0"/>
+		<e:Image source="border_png" anchorOffsetX="0" width="100" anchorOffsetY="0" height="100" top="0" alpha="0.5" right="0"/>
+		<e:Image id="imgPlayerC" width="100" height="100" anchorOffsetX="50" anchorOffsetY="50" top="0" right="0"/>
+		<e:Label id="txtPlayerUIDC" text="UID：562184" y="144.5" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="right" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerScoreC" text="Score: 1000" y="173" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="right" size="20" horizontalCenter="0"/>
+		<e:Label id="txtPlayerNameC" text="姓名" y="116" anchorOffsetY="6" height="20" anchorOffsetX="28" width="160" textColor="0x000000" textAlign="right" size="20" horizontalCenter="0"/>
+	</e:Group>
+	<e:Group left="0" top="15" width="180">
+		<e:Image source="on_png" x="0" y="0" anchorOffsetX="0" width="183" anchorOffsetY="0" height="73" scale9Grid="13,10,38,5" alpha="0.6"/>
+		<e:Label id="txtRoomID" text="房号：152522" x="11" y="11" size="20" width="148"/>
+		<e:Label id="txtMatches" text="第1/18局" x="11" y="42" size="20" width="150"/>
+	</e:Group>
+	<e:Button id="btnInvite" label="邀请好友" horizontalCenter="0" verticalCenter="0" anchorOffsetX="0" width="187"/>
+	<e:Button id="btnStartGame" label="开始游戏" horizontalCenter="0" anchorOffsetX="0" width="187" y="458"/>
+	<w:Config id="15af328bf3b"/>
+</e:Skin>
