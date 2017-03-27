@@ -17,15 +17,12 @@ EXml2Class.prototype.constructor = function()
 EXml2Class.prototype.parse = function()
 {
 	var root = path.join(__dirname, "..", "resource", "ui");
-	var classTemplete = fs.readFileSync(path.join(__dirname, "..", "exml2class", "class.ejs"), "utf8");
+	var classTemplete = fs.readFileSync(path.join(__dirname, "..", "exml2class", "eclass.ejs"), "utf8");
 	var fileList = [];
 	this.readDirSync(root, fileList);
 	fileList.forEach(function(fn, index){
-		var data = this.createEClassOptions();
-		var xmlStr = fs.readFileSync(fn, "utf8");
-		var xml = new DOMParser().parseFromString(xmlStr, 'text/xml');
-		this.parseEXml(xml, data);
-	}.bind(this));
+		this.parseFile(fn, classTemplete)
+	}.bind(this));	
 }
 
 // var data = createEClassOptions();
@@ -33,14 +30,39 @@ EXml2Class.prototype.parse = function()
 // var s = ejs.render(classTemplete, data);
 // console.log(s);
 
-EXml2Class.prototype.parseEXml = function(node, eclassData)
+EXml2Class.prototype.parseFile = function(fn, classTemplete)
 {
-	console.log("kkk:", node.nodeName);
-	if (node.hasChildNodes())
+	console.log("[Parse]:", fn);
+
+	var data = this.createEClassOptions();
+	var str = fs.readFileSync(fn, "utf8");
+	var doc = new DOMParser().parseFromString(str, 'text/xml');
+	this.parseDoc(doc, data);
+}
+
+EXml2Class.prototype.parseDoc = function(doc, eclassData)
+{
+	this.parseNode(doc.documentElement, eclassData)
+}
+
+EXml2Class.prototype.parseNode = function(node, eclassData)
+{
+	if (node.nodeType == 1)
 	{
-		for(var item in node.childNodes)
+		console.log(node.tagName, node.getAttribute("id"));
+	}
+
+	var childNodes = node.childNodes;
+	for (i = 0; i < childNodes.length; i++)
+	{
+		var item = childNodes[i];
+		if (item.nodeType == 1)
 		{
-			// this.parseEXml(item);
+			this.parseNode(item);
+		}
+		else
+		{
+			console.log(item.nodeType, item.data);
 		}
 	}
 }
@@ -72,3 +94,6 @@ EXml2Class.prototype.createEClassOptions = function()
 	data.eclass.eids = []; // {eid: "", eclass: ""}
 	return data;
 }
+
+var exml2class = new EXml2Class();
+exml2class.parse();
