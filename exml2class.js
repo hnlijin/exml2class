@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require("path");
 var ejs = require("ejs");
 var DOMParser = require('xmldom').DOMParser;
+var parseString = require('xml2js').parseString;
 
 function EXml2Class()
 {
@@ -36,13 +37,31 @@ EXml2Class.prototype.parseFile = function(fn, classTemplete)
 
 	var data = this.createEClassOptions();
 	var str = fs.readFileSync(fn, "utf8");
-	var doc = new DOMParser().parseFromString(str, 'text/xml');
-	this.parseDoc(doc, data);
+	parseString(str, function(error, result){
+		var skin = result['e:Skin']
+		this.parseSkin(skin, data)
+	}.bind(this))
 }
 
-EXml2Class.prototype.parseDoc = function(doc, eclassData)
+EXml2Class.prototype.parseSkin = function(skin, eclassData)
 {
-	this.parseNode(doc.documentElement, eclassData)
+	eclassData.eclass.ename = skin.$.class
+	for(var k in skin)
+	{
+		if (k != "$")
+		{
+			var item = skin[k]
+			// if (item.$["id"] != null)
+			// {
+			// 	var itemData = {}
+			// 	console.log(item)
+			// 	eclassData.eclass.eids.push(itemData)
+			// }	
+			console.log(item)		
+		}
+	}
+
+	console.log(eclassData, "\n\n")
 }
 
 EXml2Class.prototype.parseNode = function(node, eclassData)
@@ -53,16 +72,20 @@ EXml2Class.prototype.parseNode = function(node, eclassData)
 	}
 
 	var childNodes = node.childNodes;
-	for (i = 0; i < childNodes.length; i++)
+	if (childNodes.length > 0)
 	{
-		var item = childNodes[i];
-		if (item.nodeType == 1)
+		for (i = 0; i < childNodes.length; i++)
 		{
-			this.parseNode(item);
-		}
-		else
-		{
-			console.log(item.nodeType, item.data);
+			var item = childNodes[i];
+			if (item.nodeType == 1)
+			{
+				console.log(item.tagName, item.getAttribute("id"));
+				// this.parseNode(item);
+			}
+			else
+			{
+				console.log(item.nodeType);
+			}
 		}
 	}
 }
