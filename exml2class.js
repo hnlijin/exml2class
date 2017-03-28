@@ -17,19 +17,16 @@ EXml2Class.prototype.constructor = function()
 
 EXml2Class.prototype.parse = function()
 {
-	var root = path.join(__dirname, "..", "resource", "ui");
-	var classTemplete = fs.readFileSync(path.join(__dirname, "..", "exml2class", "eclass.ejs"), "utf8");
+	// var root = path.join(__dirname, "..", "resource", "ui");
+	// var classTemplete = fs.readFileSync(path.join(__dirname, "..", "exml2class", "eclass.ejs"), "utf8");
+	var root = path.join(__dirname, "exml");
+	var classTemplete = fs.readFileSync(path.join(__dirname, "eclass.ejs"), "utf8");
 	var fileList = [];
 	this.readDirSync(root, fileList);
 	fileList.forEach(function(fn, index){
 		this.parseFile(fn, classTemplete)
 	}.bind(this));	
 }
-
-// var data = createEClassOptions();
-// ejs.compile(classTemplete);
-// var s = ejs.render(classTemplete, data);
-// console.log(s);
 
 EXml2Class.prototype.parseFile = function(fn, classTemplete)
 {
@@ -40,6 +37,9 @@ EXml2Class.prototype.parseFile = function(fn, classTemplete)
 	parseString(str, function(error, result){
 		var skin = result['e:Skin']
 		this.parseSkin(skin, data)
+		ejs.compile(classTemplete);
+		var s = ejs.render(classTemplete, data);
+		console.log(s);
 	}.bind(this))
 }
 
@@ -51,41 +51,27 @@ EXml2Class.prototype.parseSkin = function(skin, eclassData)
 		if (k != "$")
 		{
 			var item = skin[k]
-			// if (item.$["id"] != null)
-			// {
-			// 	var itemData = {}
-			// 	console.log(item)
-			// 	eclassData.eclass.eids.push(itemData)
-			// }	
-			console.log(item)		
+			this.parseNode(k, item, eclassData)	
 		}
 	}
-
-	console.log(eclassData, "\n\n")
 }
 
-EXml2Class.prototype.parseNode = function(node, eclassData)
+EXml2Class.prototype.parseNode = function(k, node, eclassData)
 {
-	if (node.nodeType == 1)
+	if ("id" in node.$)
 	{
-		console.log(node.tagName, node.getAttribute("id"));
+		var itemData = {}
+		itemData.id = node.$.id
+		itemData.eclass = k
+		eclassData.eclass.eids.push(itemData)
 	}
 
-	var childNodes = node.childNodes;
-	if (childNodes.length > 0)
+	for(var k in node)
 	{
-		for (i = 0; i < childNodes.length; i++)
+		if (k != "$")
 		{
-			var item = childNodes[i];
-			if (item.nodeType == 1)
-			{
-				console.log(item.tagName, item.getAttribute("id"));
-				// this.parseNode(item);
-			}
-			else
-			{
-				console.log(item.nodeType);
-			}
+			var item = node[k]
+			this.parseNode(k, item, eclassData)
 		}
 	}
 }
