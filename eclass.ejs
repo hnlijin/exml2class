@@ -6,7 +6,7 @@
 <% if (eclass) { %>
 class <%= eclass.ename %> extends eui.Component {
     <% eclass.eids.forEach(function(item) { %>
-    public <%= item.eid %>: <%= eclass.enamespace %><%= item.eclass %>;
+    public <%= item.eid %>: <%= item.eclass %>;
     <% }) %>
 	public constructor() {
         super();

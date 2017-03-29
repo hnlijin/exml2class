@@ -1,10 +1,10 @@
 {
   "name": "exml2class",
   "version": "1.0.0",
-  "description": "白鹭引擎exml转换为ts类文件",
-  "main": "exml2class.js",
+  "description": "白鹭引擎EXML转换为TS类文件",
+  "main": "index.js",
   "scripts": {
-    "test": "exml2class.js -f helloworld.exml"
+    "test": "test.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
   "homepage": "https://github.com/hnlijin/exml2class#readme",
   "dependencies": {
     "ejs": "^2.5.6",
-    "xml2js": "^0.4.17",
-    "xmldom": "^0.1.27"
+    "xml2js": "^0.4.17"
   }
 }
