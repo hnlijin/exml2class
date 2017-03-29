@@ -45,10 +45,15 @@ EXml2Class.prototype.parseFile = function(fn, classTemplete)
 
 EXml2Class.prototype.parseSkin = function(skin, eclassData)
 {
-	eclassData.eclass.ename = skin.$.class
+	console.log(skin)
+
 	for(var k in skin)
 	{
-		if (k != "$")
+		if (k == "$")
+		{
+			eclassData.eclass.ename = skin.$.class
+		}
+		else
 		{
 			var item = skin[k]
 			this.parseNode(k, item, eclassData)	
@@ -56,19 +61,24 @@ EXml2Class.prototype.parseSkin = function(skin, eclassData)
 	}
 }
 
-EXml2Class.prototype.parseNode = function(k, node, eclassData)
+EXml2Class.prototype.parseNode = function(eclass, node, eclassData)
 {
-	if ("id" in node.$)
-	{
-		var itemData = {}
-		itemData.id = node.$.id
-		itemData.eclass = k
-		eclassData.eclass.eids.push(itemData)
-	}
+	console.log("kkk:", eclass)
 
 	for(var k in node)
 	{
-		if (k != "$")
+		if (k == "$")
+		{
+			if (node.$.id != undefined)
+			{
+				console.log(node)
+				var itemData = {}
+				itemData.eid = node.$.id
+				itemData.eclass = eclass
+				eclassData.eclass.eids.push(itemData)
+			}
+		}
+		else
 		{
 			var item = node[k]
 			this.parseNode(k, item, eclassData)
