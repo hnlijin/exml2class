@@ -4,7 +4,7 @@ var EXml2Class = require("./exml2class");
 
 var exml2class = new EXml2Class();
 var arguments = process.argv.splice(2)
-if (arguments.lenght > 0) {
+if (arguments.length == 3) {
 	exml2class.parse(arguments[0], arguments[1], arguments[2]);
 } else {
 	console.log("");

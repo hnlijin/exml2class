@@ -41,7 +41,7 @@ EXml2Class.prototype.parseFile = function(fn, classTemplete, exmlPath, classOutP
 		this.parseSkin(skin, data);
 		ejs.compile(classTemplete);
 		var s = ejs.render(classTemplete, data);
-		var op = path.join(classOutPath, data.eclass.ename + data.eclass.suffix + ".ts")
+		var op = path.join(classOutPath, data.eclass.ename + ".ts")
 		fs.writeFile(op, s, (err) => {
 			if (err) {
 				console.log("[ERROR]:", err);
@@ -59,7 +59,7 @@ EXml2Class.prototype.parseSkin = function(skin, eclassData)
 	{
 		if (k == "$")
 		{
-			eclassData.eclass.ename = skin.$.class;
+			eclassData.eclass.ename = skin.$.class.replace("Skin", eclassData.eclass.suffix);
 		}
 		else
 		{
