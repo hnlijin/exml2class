@@ -99,6 +99,11 @@ EXml2Class.prototype.parseNode = function(eclass, node, eclassData)
 		else
 		{
 			var item = node[k];
+			
+			if (typeof(item) == "string") {
+				break;
+			}
+
 			if (node.length != undefined) {
 				this.parseNode(eclass, item, eclassData);
 			} else {
