@@ -93,7 +93,9 @@ EXml2Class.prototype.parseNode = function(eclass, node, eclassData)
 				} else {
 					itemData.eclass = eclass
 				}
-				eclassData.eclass.eids.push(itemData);
+				if (itemData.eid != "labelDisplay") {
+					eclassData.eclass.eids.push(itemData);
+				}
 			}
 		}
 		else
